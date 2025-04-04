@@ -1,5 +1,5 @@
 import { Router } from "express";
-import FileController from "../controllers/FileController.js";
+import FileController from "../controllers/FileSystemController.js";
 import FileStack from "../controllers/FileStackController.js";
 import VerificationController from "../controllers/VerificationController.js";
 import multer from "multer";

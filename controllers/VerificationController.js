@@ -1,5 +1,5 @@
 import cp from "node:child_process";
-import FileController from "./FileController.js";
+import FileController from "./FileSystemController.js";
 
 class VerificationController {
 

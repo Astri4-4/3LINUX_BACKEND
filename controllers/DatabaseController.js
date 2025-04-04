@@ -22,9 +22,11 @@ class DatabaseController {
             return true;
         }).catch((err) => {
             console.log("DB FAILED");
-            return false;
+            throw ("DATABASE CONNECTION ERROR");
         })
     }
+
+
 
 }
 
