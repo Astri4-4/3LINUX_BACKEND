@@ -1,5 +1,6 @@
 import express from "express";
 import FileRoute from "./routes/file.route.js";
+import dotenv from "dotenv";
 
 import DatabaseController from "./controllers/DatabaseController.js";
 import ExerciceController from "./controllers/ExerciceController.js";
@@ -12,7 +13,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const db = new DatabaseController();
 
-
+dotenv.config();
 
 async function main() {
     console.clear()
@@ -20,7 +21,7 @@ async function main() {
     const dbConnection = await db.testConnection();
 
     const user = new UserController(db.client);
-    user.create("astria", "admin", "tamere", "babacool");
+    user.login("tamere", "babacool");
 
     const app = express();
 
