@@ -6,6 +6,10 @@ class FileStackController {
         this.stackPath = __dirname + "/fileStack.json";
     }
 
+    async init() {
+        fs.writeFile(this.stackPath, JSON.stringify([]));
+    }
+
     async getFileStack() {
         const stack = await fs.readFile(this.stackPath, {encoding: "utf-8"});
         return JSON.parse(stack);

@@ -7,12 +7,16 @@ class ExerciceController {
     }
 
     async create(name, instruction, language) {
-        const query = 'INSERT INTO exercises (name, instruction, language) VALUES($1, $2, $3);';
+        const query = 'INSERT INTO exercises (name, instruction, language) VALUES($1, $2, $3) RETURNING id;';
         const values = [name, instruction, language];
         
-        const res = await this.dbclient.query(query, values);
-        console.log(res);
-        
+        try {
+            const res = await this.dbclient.query(query, values);
+            console.log(res);
+            return res;
+        } catch (error) {
+            return false;
+        }
 
     }
 
@@ -21,17 +25,26 @@ class ExerciceController {
         const query = 'SELECT * FROM exercises WHERE id=$1';
         const values = [id];
 
-        const res = await this.dbclient.query(query, values);
-        return res.rows[0]
+        try {
+            const res = await this.dbclient.query(query, values);
+            return res.rows[0]
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
     }
 
     async getAll() {
 
         const query = 'SELECT * FROM exercises';
 
-        const res = await this.dbclient.query(query);
-
-        return res.rows;
+        try {
+            const res = await this.dbclient.query(query);
+            return res.rows;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
 
     }
 
